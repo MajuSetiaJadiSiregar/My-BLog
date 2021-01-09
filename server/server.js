@@ -1,7 +1,10 @@
+require('dotenv').config();
 const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI;
 
 /**
  * middleware
@@ -22,6 +25,17 @@ app.post('/', (req, res) => {
 
 });
 
+/**
+ * connect mongoose
+ */
+mongoose.connect(MONGO_URI, { useNewUrlParser : true, useUnifiedTopology : true})
+.then(() => console.log('Cool...!! database connect'))
+.catch(err => console.log(`Sorry ... Database error ${err}`));
+
+
+/**
+ * http server
+ */
 app.listen(PORT, () => {
    console.log(`Server started on ${PORT}`);
 });
