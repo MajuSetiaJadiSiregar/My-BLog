@@ -1,7 +1,7 @@
 const Validator = require('validator');
 const isEmpty = require('is-empty');
 
-const ValidateSignInput = () => {
+const ValidateSignInput = (data) => {
 
    let errors = {};
 

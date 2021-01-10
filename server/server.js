@@ -9,6 +9,10 @@ const MONGO_URI = process.env.MONGO_URI;
 /**
  * middleware
  */
+const passport = require('passport');
+app.use(passport.initialize());
+require('./middleware/Passport')(passport);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : false}));
 
@@ -25,6 +29,8 @@ app.post('/', (req, res) => {
 
 });
 
+app.use('/api/users/', require('./routes/User'));
+app.use('/api/post/', require('./routes/Post'));
 /**
  * connect mongoose
  */
